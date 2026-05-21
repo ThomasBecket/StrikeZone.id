@@ -1,0 +1,6 @@
+{
+  "name": "StrikeZone.id",
+  "description": "StrikeZone.id - Platform e-commerce airsoft premium pertama dan terlengkap di Indonesia dengan integrasi STRIKER AI™, rental, swap preloved, Event, KTP verifikasi, dan ranking komunitas.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
