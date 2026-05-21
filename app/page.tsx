@@ -195,7 +195,7 @@ export default function StrikeZoneApp() {
           <div>
             <h4 className="text-[#F0F0F0] font-heading font-semibold text-sm mb-3">LAYANAN UTAMA</h4>
             <ul className="space-y-2">
-              <li><button onClick={() => navigateTo("katalog")} className="hover:text-white transition">Katalog Aeg & Gbb</button></li>
+              <li><button onClick={() => navigateTo("katalog")} className="hover:text-white transition">Katalog AEG & GBB</button></li>
               <li><button onClick={() => navigateTo("strikerent")} className="hover:text-white transition">StrikeRent™ Sewa Airsoft</button></li>
               <li><button onClick={() => navigateTo("strikeswap")} className="hover:text-white transition">StrikeSwap™ Jual-Beli Bekas</button></li>
               <li><button onClick={() => navigateTo("strikerai")} className="hover:text-white transition">STRIKER AI™ Asisten Pribadi</button></li>
@@ -218,6 +218,17 @@ export default function StrikeZoneApp() {
               </div>
               <p className="leading-relaxed">Setiap unit airsoft dilengkapi badge verifikasi resmi dan lulus inspeksi laboratorium FPS sebelum dikirimkan.</p>
             </div>
+          </div>
+        </div>
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mt-12 pt-6 border-t border-[#1E3050]/40 flex flex-col sm:flex-row items-center justify-between gap-4 text-[10px]">
+          <p>© 2026 StrikeZone.id. Seluruh hak cipta dilindungi.</p>
+          <div className="flex flex-wrap items-center gap-2">
+            <span className="text-[#8A9BB0] uppercase font-mono tracking-wider font-semibold">Project By:</span>
+            <span className="text-[#4CAF50] hover:text-white transition duration-150 font-medium">Thomas Becket Tegar Surya Christy</span>
+            <span className="text-[#1E3050] font-bold">•</span>
+            <span className="text-[#4CAF50] hover:text-white transition duration-150 font-medium">Althaffayiz Syafiq</span>
+            <span className="text-[#1E3050] font-bold">•</span>
+            <span className="text-[#4CAF50] hover:text-white transition duration-150 font-medium">Barry Caesar Satrio Himalaya Jamallulail</span>
           </div>
         </div>
       </footer>
