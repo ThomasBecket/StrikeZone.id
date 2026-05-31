@@ -477,25 +477,18 @@ function ProductCard({ product, handleAddToCart, wishlist, toggleWishlist }: { p
             LULUS LAB ✅
           </span>
 
-          {product.imageUrl && !imageError ? (
-            <div className="w-full h-full relative">
-              <img
-                src={product.imageUrl}
-                alt={product.name}
-                className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
-                referrerPolicy="no-referrer"
-                onError={() => setImageError(true)}
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-[#0D1B2A]/90 via-[#0D1B2A]/20 to-transparent"></div>
-            </div>
-          ) : (
-            <div className="text-center">
-              <span className="text-4xl block group-hover:scale-110 transition duration-300">
-                {product.category.includes("Sniper") ? "🎯" : product.category.includes("Pistol") ? "🔫" : "💥"}
-              </span>
-              <span className="text-[10px] text-[#8A9BB0] font-mono uppercase tracking-widest block mt-2">{product.brand}</span>
-            </div>
-          )}
+          <div className="w-full h-full relative">
+            <ProductImage
+              src={product.imageUrl}
+              alt={product.name}
+              category={product.category}
+              className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+            />
+            {product.imageUrl && (
+              <div className="absolute inset-0 bg-gradient-to-t from-[#0D1B2A]/90 via-[#0D1B2A]/20 to-transparent pointer-events-none"></div>
+            )}
+          </div>
+          
         </div>
 
         {/* Info */}
