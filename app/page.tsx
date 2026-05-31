@@ -408,9 +408,9 @@ function LandingPage({ navigateTo, handleAddToCart, wishlist, toggleWishlist }: 
         <h2 className="text-2xl font-black font-heading text-white text-center uppercase tracking-wider">Apa Kata Komunitas Operator</h2>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
           {[
-            { name: "Komandan Reza_47", rank: "★ Sergeant, Jakarta", text: "StrikeZone.id merubah hobi airsoft di Indonesia. Unit TM VSR-10 yang saya sewa di StrikeRent sangat mulus, performa persis seperti aslinya. Dan yang penting legalitas KTP terbit lancar." },
-            { name: "Mayor Bowo", rank: "★★ Lieutenant, Surabaya", text: "Asisten STRIKER AI membantu memilih gear M4 AEG dengan ketepatan suku cadang yang luar biasa. Sangat intuitif! Belanja di sini tidak pusing masalah kompatibilitas." },
-            { name: "Operator Santi", rank: "Recruit, Depok", text: "Toko airsoft paling modern! Saya baru membeli Pistol Umarex Glock 17 bekas di StrikeSwap. Kondisi super mulus Grade A, harga benchmark akurat. Rekomended seller!" }
+            { name: "Beri Steven", rank: "★★ Mayor Jenderal, Jakarta", text: "StrikeZone.id merubah hobi airsoft di Indonesia. Unit TM VSR-10 yang saya sewa di StrikeRent sangat mulus, performa persis seperti aslinya. Dan yang penting legalitas KTP terbit lancar." },
+            { name: "Jon Kalpin", rank: "★ Brigadir Jenderal, Surabaya", text: "Asisten STRIKER AI membantu memilih gear M4 AEG dengan ketepatan suku cadang yang luar biasa. Sangat intuitif! Belanja di sini tidak pusing masalah kompatibilitas." },
+            { name: "Sadam Kopling", rank: "★ Brigadir Jenderal, Depok", text: "Toko airsoft paling modern! Saya baru membeli Pistol Umarex Glock 17 bekas di StrikeSwap. Kondisi super mulus Grade A, harga benchmark akurat. Rekomended seller!" }
           ].map((t, idx) => (
             <div key={idx} className="bg-[#0D1B2A] border border-[#1E3050] p-6 rounded relative">
               <span className="text-3xl text-[#4CAF50]/40 absolute top-4 right-4">”</span>
@@ -1243,16 +1243,16 @@ function StrikeRankPage() {
   const mockLeaderboard = useMemo(() => {
     if (subTab === "nasional") {
       return [
-        { key: 1, pos: 1, name: "Komandan Sugi", rank: "General", xp: 148200 },
-        { key: 2, pos: 2, name: "Letnan Gunawan", rank: "Colonel", xp: 125100 },
-        { key: 3, pos: 3, name: "Sersan_Bowo", rank: "Lieutenant", xp: 95300 },
-        { key: 4, pos: 247, name: "Kamu (Operator_Reza)", rank: "Sergeant", xp: 4200, current: true }
+        { key: 1, pos: 1, name: "Thomas Becket", rank: "Jenderal Besar", xp: 148200 },
+        { key: 2, pos: 2, name: "Althaf Syafiq", rank: "Jenderal Besar", xp: 125100 },
+        { key: 3, pos: 3, name: "Ripat Atalah", rank: "Letnan Jenderal", xp: 95300 },
+        { key: 4, pos: 247, name: "Kamu (Beri Steven)", rank: "Mayor Jenderal", xp: 4200, current: true }
       ];
     }
     return [
-      { key: 5, pos: 1, name: "Sersan_Bowo", rank: "Lieutenant", xp: 95300 },
-      { key: 6, pos: 2, name: "Sersan_Hendra", rank: "Lieutenant", xp: 82000 },
-      { key: 7, pos: 247, name: "Kamu (Operator_Reza)", rank: "Sergeant", xp: 4200, current: true }
+      { key: 5, pos: 1, name: "Hagi Geming", rank: "Letnan Jenderal", xp: 95300 },
+      { key: 6, pos: 2, name: "Bangjek Satria", rank: "Mayor Jenderal", xp: 82000 },
+      { key: 7, pos: 247, name: "Kamu (Beri Steven)", rank: "Mayor Jenderal", xp: 4200, current: true }
     ];
   }, [subTab]);
 
@@ -1265,8 +1265,8 @@ function StrikeRankPage() {
             🎖️
           </div>
           <div>
-            <h3 className="font-heading font-black text-2xl text-white uppercase">Sersan Kepala Reza</h3>
-            <p className="text-xs text-[#E67E22] font-mono uppercase tracking-widest font-bold">RECRUIT (LEVEL 4) ➔ SERGEANT (★ CURRENT)</p>
+            <h3 className="font-heading font-black text-2xl text-white uppercase">Beri Steven</h3>
+            <p className="text-xs text-[#E67E22] font-mono uppercase tracking-widest font-bold">Mayor Jenderal (★★)</p>
             <div className="mt-2 w-full md:w-64 bg-[#162033] h-2.5 rounded-full overflow-hidden border border-[#1E3050]">
               <div className="bg-yellow-500 h-full w-[72%]"></div>
             </div>
@@ -1545,12 +1545,12 @@ function StrikeIDPage() {
             
             <div className="flex justify-center gap-4">
               <button
-                onClick={() => setFileSelected("ktp_reza.png")}
+                onClick={() => setFileSelected("ktp_beri.png")}
                 className={`text-xs py-2 px-4 rounded ${
                   fileSelected ? "bg-emerald-600 text-white" : "bg-[#162033] text-[#8A9BB0] border border-[#1E3050]"
                 }`}
               >
-                {fileSelected ? "✓ KTP_REZA.PNG TERPILIH" : "PILIH FILE CONTOH KTP"}
+                {fileSelected ? "✓ KTP_BERI.PNG TERPILIH" : "PILIH FILE CONTOH KTP"}
               </button>
             </div>
 
@@ -1623,7 +1623,7 @@ function CartAndCheckoutPage({ cart, setCart, navigateTo }: { cart: any[], setCa
   const [successModalOpen, setSuccessModalOpen] = useState(false);
   
   const [formFields, setFormFields] = useState({
-    name: "Lt. Reza Hendra",
+    name: "Beri Steven",
     phone: "081298457788",
     city: "Jakarta Selatan",
     addr: "Kavling Taktis, Gang M4, No. 47"
