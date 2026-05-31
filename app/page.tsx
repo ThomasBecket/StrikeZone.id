@@ -425,11 +425,35 @@ function LandingPage({ navigateTo, handleAddToCart, wishlist, toggleWishlist }: 
   );
 }
 
+// HELPER TO RENDER IMAGES SECURELY WITH FALLBACK TO EMOJIS
+function ProductImage({ src, alt, category, className = "w-full h-full object-cover" }: { src?: string; alt: string; category: string; className?: string }) {
+  const [error, setError] = useState(false);
+
+  if (src && !error) {
+    return (
+      <img
+        src={src}
+        alt={alt}
+        className={className}
+        referrerPolicy="no-referrer"
+        onError={() => setError(true)}
+      />
+    );
+  }
+
+  return (
+    <div className="flex flex-col items-center justify-center p-2 text-center select-none">
+      <span className="text-4xl block group-hover:scale-110 transition duration-300">
+        {category.includes("Sniper") ? "🎯" : category.includes("Pistol") ? "🔫" : "💥"}
+      </span>
+    </div>
+  );
+}
+
 // PRODUCT CARD COMPONENT
 function ProductCard({ product, handleAddToCart, wishlist, toggleWishlist }: { product: Product, handleAddToCart: (p: Product) => void, wishlist: string[], toggleWishlist: (id: string) => void }) {
   const isWishlisted = wishlist.includes(product.id);
   const discountedPrice = product.price * (1 - product.discount / 100);
-  const [imageError, setImageError] = useState(false);
 
   return (
     <div className="bg-[#0D1B2A] border border-[#1E3050] hover:border-[#4CAF50]/50 hover:translate-y-[-4px] transition-all duration-200 rounded overflow-hidden flex flex-col justify-between group relative">
@@ -786,8 +810,13 @@ function KatalogPage({ handleAddToCart, wishlist, toggleWishlist }: { handleAddT
                   return (
                     <div key={p.id} className="bg-[#0D1B2A] border border-[#1E3050] p-4 rounded flex flex-col sm:flex-row items-center justify-between gap-4 hover:border-[#4CAF50] transition">
                       <div className="flex items-center gap-4">
-                        <div className="text-3xl bg-[#162033] p-4 rounded text-center">
-                          {p.category.includes("Sniper") ? "🎯" : p.category.includes("Pistol") ? "🔫" : "💥"}
+                        <div className="w-16 h-16 bg-[#162033] rounded overflow-hidden flex items-center justify-center shrink-0 relative">
+                          <ProductImage
+                            src={p.imageUrl}
+                            alt={p.name}
+                            category={p.category}
+                            className="w-full h-full object-cover"
+                          />
                         </div>
                         <div>
                           <h4 className="font-heading font-bold text-base text-white uppercase">{p.name}</h4>
@@ -823,6 +852,8 @@ function KatalogPage({ handleAddToCart, wishlist, toggleWishlist }: { handleAddT
     </div>
   );
 }
+
+
 
 // -------------------------------------------------------------
 // [3] STRIKER AI™ CHAT DIALOGUE
@@ -1063,10 +1094,15 @@ function StrikeRentPage({ handleAddToCart }: { handleAddToCart: (p: Product) => 
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
         {rentalGears.filter(g => cityFilter === "Semua" || g.city === cityFilter).map((gear) => (
           <div key={gear.id} className="bg-[#0D1B2A] border border-[#1E3050] hover:border-[#4CAF50] transition rounded p-5 flex flex-col md:flex-row gap-4">
-            <div className="w-full md:w-40 h-36 bg-[#162033] rounded flex flex-col items-center justify-center font-bold text-3xl shrink-0 p-4 relative">
-              <span>{gear.category.includes("Sniper") ? "🎯" : "💥"}</span>
-              <span className="text-[9px] bg-red-600 px-1 py-0.5 rounded text-white uppercase absolute top-2 left-2">GRADE {gear.grade}</span>
-              <span className="text-[9px] bg-[#1E3050] px-1 py-0.5 rounded text-[#8A9BB0] uppercase absolute bottom-2 right-2">TESTED</span>
+            <div className="w-full md:w-40 h-36 bg-[#162033] rounded overflow-hidden flex items-center justify-center shrink-0 relative">
+              <ProductImage
+                src={gear.imageUrl}
+                alt={gear.name}
+                category={gear.category}
+                className="w-full h-full object-cover"
+              />
+              <span className="text-[9px] bg-red-600 px-1 py-0.5 rounded text-white uppercase absolute top-2 left-2 z-10">GRADE {gear.grade}</span>
+              <span className="text-[9px] bg-[#1E3050]/80 px-1 py-0.5 rounded text-[#8A9BB0] uppercase absolute bottom-2 right-2 z-10">TESTED</span>
             </div>
 
             <div className="flex-1 flex flex-col justify-between space-y-3">
@@ -1100,6 +1136,8 @@ function StrikeRentPage({ handleAddToCart }: { handleAddToCart: (p: Product) => 
         ))}
       </div>
 
+
+      
       {/* JADI PROVIDER */}
       <div className="bg-[#162033] border border-[#1E3050] rounded-lg p-6 flex flex-col md:flex-row items-center justify-between gap-6">
         <div>
