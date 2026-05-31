@@ -27,6 +27,7 @@ interface Product {
   owner?: string;
   city?: string;
   available?: boolean;
+  imageUrl?: string;
 }
 
 // Dummy Database
