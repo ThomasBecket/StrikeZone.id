@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useState, useEffect, useMemo } from "react";
+import Image from "next/image";
 import {
   Search, Heart, ShoppingCart, User, Menu, X, ChevronRight, ChevronDown, Check,
   Shield, Award, Calendar, RefreshCcw, MapPin, BadgePercent, Trash2, Edit, Sparkles,
