@@ -429,12 +429,13 @@ function LandingPage({ navigateTo, handleAddToCart, wishlist, toggleWishlist }: 
 function ProductCard({ product, handleAddToCart, wishlist, toggleWishlist }: { product: Product, handleAddToCart: (p: Product) => void, wishlist: string[], toggleWishlist: (id: string) => void }) {
   const isWishlisted = wishlist.includes(product.id);
   const discountedPrice = product.price * (1 - product.discount / 100);
+  const [imageError, setImageError] = useState(false);
 
   return (
     <div className="bg-[#0D1B2A] border border-[#1E3050] hover:border-[#4CAF50]/50 hover:translate-y-[-4px] transition-all duration-200 rounded overflow-hidden flex flex-col justify-between group relative">
       <div>
-        {/* Card Photo placeholder */}
-        <div className="h-44 bg-gradient-to-b from-[#162033] to-[#0D1B2A] relative flex items-center justify-center p-4">
+        {/* Card Photo with Real Image or Fallback */}
+        <div className="h-44 bg-gradient-to-b from-[#162033] to-[#0D1B2A] relative flex items-center justify-center overflow-hidden">
           <div className="absolute top-2 left-2 flex flex-col gap-1 z-10">
             {product.badge !== "NONE" && (
               <span className={`text-[9px] font-bold uppercase tracking-wider py-0.5 px-2 rounded ${
@@ -443,7 +444,7 @@ function ProductCard({ product, handleAddToCart, wishlist, toggleWishlist }: { p
                 {product.badge}
               </span>
             )}
-            <span className="text-[9px] font-bold bg-[#162033]/80 text-[#8A9BB0] border border-[#1E3050] py-0.5 px-2 rounded flex items-center gap-1 z-10">
+            <span className="text-[9px] font-bold bg-[#162033]/80 text-[#8A9BB0] border border-[#1E3050] py-0.5 px-2 rounded flex items-center gap-1">
               🔬 {product.fps} FPS
             </span>
           </div>
@@ -452,13 +453,25 @@ function ProductCard({ product, handleAddToCart, wishlist, toggleWishlist }: { p
             LULUS LAB ✅
           </span>
 
-          {/* Dummy visual gun wireframe */}
-          <div className="text-center">
-            <span className="text-4xl block group-hover:scale-110 transition duration-300">
-              {product.category.includes("Sniper") ? "🎯" : product.category.includes("Pistol") ? "🔫" : "💥"}
-            </span>
-            <span className="text-[10px] text-[#8A9BB0] font-mono uppercase tracking-widest block mt-2">{product.brand}</span>
-          </div>
+          {product.imageUrl && !imageError ? (
+            <div className="w-full h-full relative">
+              <img
+                src={product.imageUrl}
+                alt={product.name}
+                className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+                referrerPolicy="no-referrer"
+                onError={() => setImageError(true)}
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-[#0D1B2A]/90 via-[#0D1B2A]/20 to-transparent"></div>
+            </div>
+          ) : (
+            <div className="text-center">
+              <span className="text-4xl block group-hover:scale-110 transition duration-300">
+                {product.category.includes("Sniper") ? "🎯" : product.category.includes("Pistol") ? "🔫" : "💥"}
+              </span>
+              <span className="text-[10px] text-[#8A9BB0] font-mono uppercase tracking-widest block mt-2">{product.brand}</span>
+            </div>
+          )}
         </div>
 
         {/* Info */}
